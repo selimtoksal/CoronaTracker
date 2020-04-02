@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 class NewsViewModel @Inject constructor(
     private val fetchNewsUseCase: FetchNewsUseCase
 ) : ViewModel() {
@@ -25,25 +26,24 @@ class NewsViewModel @Inject constructor(
         fetchCoronaNews()
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     private fun fetchCoronaNews() {
         fetchNewsUseCase.fetchCoronaNews()
             .onEach { resource ->
                 when (resource) {
                     is Resource.Success -> updatePageForResult(resource.data)
-                    is Resource.Error -> updatePageForError()
+                    is Resource.Error -> updatePageForError(resource.exception)
                     is Resource.Loading -> updatePageForLoading()
                 }
             }
-            .catch { updatePageForError() }
+            .catch { updatePageForError(it) }
             .launchIn(viewModelScope)
     }
 
     private fun updatePageForResult(data: List<News>) {
-        news.postValue(data)
+        news.value = data
     }
 
-    private fun updatePageForError() {
+    private fun updatePageForError(throwable: Throwable) {
 
     }
 

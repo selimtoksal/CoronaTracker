@@ -18,7 +18,7 @@ class FetchNewsUseCase @Inject constructor(
     @DefaultDispatcher private val dispatcher: CoroutineDispatcher
 ) {
 
-    @OptIn(ExperimentalCoroutinesApi::class)
+    @ExperimentalCoroutinesApi
     fun fetchCoronaNews(): Flow<Resource<List<News>>> {
         return repository
             .fetchCoronaNews()

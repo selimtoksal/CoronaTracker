@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.icanteach.app.coronatracker.core.Resource
 import co.icanteach.app.coronatracker.domain.dashboard.FetchDashboardUseCase
 import co.icanteach.app.coronatracker.domain.dashboard.model.DashboardItem
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -27,18 +28,22 @@ class DashboardViewModel @Inject constructor(
 
     private fun fetchDashboard() {
         fetchDashboardUseCase.fetchDashboard()
-            .onEach {
-                updatePageForResult(it)
+            .onEach { resource ->
+                when (resource) {
+                    is Resource.Success -> updatePageForResult(resource.data)
+                    is Resource.Error -> updatePageForError(resource.exception)
+                    is Resource.Loading -> updatePageForLoading()
+                }
             }
-            .catch { updatePageForError() }
+            .catch { updatePageForError(it) }
             .launchIn(viewModelScope)
     }
 
     private fun updatePageForResult(data: List<DashboardItem>) {
-        dashboardItems.postValue(data)
+        dashboardItems.value = data
     }
 
-    private fun updatePageForError() {
+    private fun updatePageForError(throwable: Throwable) {
 
     }
 

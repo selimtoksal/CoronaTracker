@@ -1,6 +1,7 @@
 package co.icanteach.app.coronatracker.domain.dashboard
 
 import co.icanteach.app.coronatracker.core.Resource
+import co.icanteach.app.coronatracker.core.combine
 import co.icanteach.app.coronatracker.core.inject.DefaultDispatcher
 import co.icanteach.app.coronatracker.data.CoronaTrackerRepository
 import co.icanteach.app.coronatracker.domain.DashboardItemMapper
@@ -17,19 +18,14 @@ class FetchDashboardUseCase @Inject constructor(
     private val mapper: DashboardItemMapper,
     @DefaultDispatcher private val dispatcher: CoroutineDispatcher
 ) {
-    @OptIn(ExperimentalCoroutinesApi::class)
-    fun fetchDashboard(): Flow<List<DashboardItem>> {
+    @ExperimentalCoroutinesApi
+    fun fetchDashboard(): Flow<Resource<List<DashboardItem>>> {
         val totalDataFlow = repository.fetchTotalData()
         val countriesDataFlow = repository.fetchCountriesData()
-        return totalDataFlow
-            .combine(countriesDataFlow) { totalData, countriesData ->
-                when {
-                    totalData is Resource.Success && countriesData is Resource.Success -> {
-                        mapper.mapFromResponse(totalData.data, countriesData.data)
-                    }
-                    // todo update for error and loading.
-                    else -> emptyList()
-                }
-            }.flowOn(dispatcher)
+        return totalDataFlow.combine(countriesDataFlow) { totalDataResource, countriesDataResource ->
+            totalDataResource.combine(countriesDataResource) { totalData, countriesData ->
+                mapper.mapFromResponse(totalData, countriesData)
+            }
+        }.flowOn(dispatcher)
     }
 }

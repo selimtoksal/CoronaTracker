@@ -13,7 +13,7 @@ class CoronaTrackerRepository @Inject constructor(private val remoteDataSource: 
 
      fun fetchCountriesData(): Flow<Resource<CountriesDataResponse>> {
          return flow {
-             emit(Resource.Loading())
+             emit(Resource.Loading)
              try {
                  val countriesDataResponse = remoteDataSource.fetchCountriesData()
                  emit(Resource.Success(countriesDataResponse))
@@ -25,7 +25,7 @@ class CoronaTrackerRepository @Inject constructor(private val remoteDataSource: 
 
     fun fetchTotalData(): Flow<Resource<TotalDataResponse>> {
         return flow {
-            emit(Resource.Loading())
+            emit(Resource.Loading)
             try {
                 val totalDataResponse = remoteDataSource.fetchTotalData()
                 emit(Resource.Success(totalDataResponse))
@@ -37,7 +37,7 @@ class CoronaTrackerRepository @Inject constructor(private val remoteDataSource: 
 
     fun fetchCoronaNews(): Flow<Resource<NewsResponse>> {
         return flow {
-            emit(Resource.Loading())
+            emit(Resource.Loading)
             try {
                 val coronaNewsResponse = remoteDataSource.fetchCoronaNews()
                 emit(Resource.Success(coronaNewsResponse))
