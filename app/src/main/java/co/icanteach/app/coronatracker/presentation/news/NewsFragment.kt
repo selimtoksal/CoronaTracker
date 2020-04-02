@@ -8,9 +8,9 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import co.icanteach.app.coronatracker.R
 import co.icanteach.app.coronatracker.appComponent
-import co.icanteach.app.coronatracker.core.observeNonNull
 import co.icanteach.app.coronatracker.presentation.news.inject.NewsComponent
 import kotlinx.android.synthetic.main.fragment_news.*
 import javax.inject.Inject
@@ -43,7 +43,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         newsAdapter.onNewsItemClick = {
             openWebContent(it)
         }
-        viewModel.getNewsResult().observeNonNull(viewLifecycleOwner) { news ->
+        viewModel.getNewsResult().observe(viewLifecycleOwner) { news ->
             newsAdapter.setNews(news)
         }
     }
