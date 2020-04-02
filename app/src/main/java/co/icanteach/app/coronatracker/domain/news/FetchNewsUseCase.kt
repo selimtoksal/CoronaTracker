@@ -2,6 +2,7 @@ package co.icanteach.app.coronatracker.domain.news
 
 import co.icanteach.app.coronatracker.core.Resource
 import co.icanteach.app.coronatracker.core.inject.DefaultDispatcher
+import co.icanteach.app.coronatracker.core.map
 import co.icanteach.app.coronatracker.data.CoronaTrackerRepository
 import co.icanteach.app.coronatracker.domain.news.model.News
 import kotlinx.coroutines.CoroutineDispatcher
