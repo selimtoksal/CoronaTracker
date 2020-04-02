@@ -14,7 +14,7 @@ class FetchDashboardUseCase @Inject constructor(
     private val mapper: DashboardItemMapper
 ) {
     @ExperimentalCoroutinesApi
-    suspend fun fetchDashboard(): Flow<List<DashboardItem>> {
+    fun fetchDashboard(): Flow<List<DashboardItem>> {
         val totalDataFlow = repository.fetchTotalData()
         val countriesDataFlow = repository.fetchCountriesData()
         return totalDataFlow

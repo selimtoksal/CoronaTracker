@@ -11,19 +11,19 @@ import javax.inject.Inject
 
 class CoronaTrackerRepository @Inject constructor(private val remoteDataSource: RemoteDataSource) {
 
-    suspend fun fetchCountriesData(): Flow<Resource<CountriesDataResponse>> {
-        return flow {
-            emit(Resource.Loading())
-            try {
-                val countriesDataResponse = remoteDataSource.fetchCountriesData()
-                emit(Resource.Success(countriesDataResponse))
-            } catch (exception: Exception) {
-                emit(Resource.Error(exception))
-            }
-        }
-    }
+     fun fetchCountriesData(): Flow<Resource<CountriesDataResponse>> {
+         return flow {
+             emit(Resource.Loading())
+             try {
+                 val countriesDataResponse = remoteDataSource.fetchCountriesData()
+                 emit(Resource.Success(countriesDataResponse))
+             } catch (exception: Exception) {
+                 emit(Resource.Error(exception))
+             }
+         }
+     }
 
-    suspend fun fetchTotalData(): Flow<Resource<TotalDataResponse>> {
+    fun fetchTotalData(): Flow<Resource<TotalDataResponse>> {
         return flow {
             emit(Resource.Loading())
             try {
@@ -35,7 +35,7 @@ class CoronaTrackerRepository @Inject constructor(private val remoteDataSource: 
         }
     }
 
-    suspend fun fetchCoronaNews(): Flow<Resource<NewsResponse>> {
+    fun fetchCoronaNews(): Flow<Resource<NewsResponse>> {
         return flow {
             emit(Resource.Loading())
             try {

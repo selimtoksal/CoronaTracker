@@ -12,7 +12,7 @@ class FetchNewsUseCase @Inject constructor(
     private val mapper: CoronaNewsMapper
 ) {
 
-    suspend fun fetchCoronaNews(): Flow<Resource<List<News>>> {
+    fun fetchCoronaNews(): Flow<Resource<List<News>>> {
         return repository
             .fetchCoronaNews()
             .map { resource ->
