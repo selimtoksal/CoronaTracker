@@ -3,9 +3,7 @@ package co.icanteach.app.coronatracker.presentation.news
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -17,7 +15,7 @@ import co.icanteach.app.coronatracker.presentation.news.inject.NewsComponent
 import kotlinx.android.synthetic.main.fragment_news.*
 import javax.inject.Inject
 
-class NewsFragment : Fragment() {
+class NewsFragment : Fragment(R.layout.fragment_news) {
 
     private lateinit var newsComponent: NewsComponent
 
@@ -36,14 +34,6 @@ class NewsFragment : Fragment() {
         newsComponent = appComponent.newsComponent.create().also {
             it.inject(this)
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
