@@ -17,7 +17,6 @@ import javax.inject.Singleton
         DashboardModule::class]
 )
 interface ApplicationComponent {
-    fun newsComponent(): NewsComponent.Factory
-
-    fun dashboardComponent(): DashboardComponent.Factory
+    val newsComponent: NewsComponent.Factory
+    val dashboardComponent: DashboardComponent.Factory
 }

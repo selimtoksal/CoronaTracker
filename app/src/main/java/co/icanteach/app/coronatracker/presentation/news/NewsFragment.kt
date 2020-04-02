@@ -3,17 +3,16 @@ package co.icanteach.app.coronatracker.presentation.news
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import co.icanteach.app.coronatracker.CoronaTrackerApplication
 import co.icanteach.app.coronatracker.R
+import co.icanteach.app.coronatracker.appComponent
 import co.icanteach.app.coronatracker.core.observeNonNull
-import co.icanteach.app.coronatracker.presentation.MainActivity
 import co.icanteach.app.coronatracker.presentation.news.inject.NewsComponent
 import kotlinx.android.synthetic.main.fragment_news.*
 import javax.inject.Inject
@@ -34,9 +33,9 @@ class NewsFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        newsComponent = ((activity as MainActivity).applicationContext as CoronaTrackerApplication)
-            .appComponent.newsComponent().create()
-        newsComponent.inject(this)
+        newsComponent = appComponent.newsComponent.create().also {
+            it.inject(this)
+        }
     }
 
     override fun onCreateView(
