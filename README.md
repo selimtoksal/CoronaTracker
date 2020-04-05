@@ -25,6 +25,5 @@ Don't forget to update [COVID-19 Coronavirus API](https://collectapi.com/tr/api/
 
 ## TODO for near future
 - [ ] improve Application UI.
-- [ ] update and fix [FetchDashboardUseCase](https://github.com/muratcanbur/CoronaTracker/blob/master/app/src/main/java/co/icanteach/app/coronatracker/domain/dashboard/FetchDashboardUseCase.kt)
 - [ ] add related unit tests.
 - [ ] add related UI tests.
