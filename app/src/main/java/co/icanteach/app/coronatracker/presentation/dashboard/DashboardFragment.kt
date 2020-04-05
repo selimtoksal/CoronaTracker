@@ -9,7 +9,7 @@ import androidx.lifecycle.observe
 import co.icanteach.app.coronatracker.R
 import co.icanteach.app.coronatracker.appComponent
 import co.icanteach.app.coronatracker.presentation.dashboard.inject.DashboardComponent
-import kotlinx.android.synthetic.main.fragment_news.*
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 import javax.inject.Inject
 
 class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
@@ -32,7 +32,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         recycler_view.adapter = adapter
 
         viewModel.getDashboardItems().observe(viewLifecycleOwner) { dashboardItems ->
-            adapter.setDashboardItems(dashboardItems)
+            adapter.setDashboard(dashboardItems)
         }
     }
 

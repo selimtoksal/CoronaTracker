@@ -1,7 +1,6 @@
 package co.icanteach.app.coronatracker.data.remote
 
 import co.icanteach.app.coronatracker.BuildConfig
-import co.icanteach.app.coronatracker.data.TokenInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -18,14 +17,8 @@ class NetworkModule {
     @Reusable
     internal fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(TokenInterceptor())
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
-    }
-
-    @Provides
-    @Reusable
-    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
-        return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
     @Provides

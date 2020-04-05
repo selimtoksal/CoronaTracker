@@ -27,7 +27,7 @@ class DashboardViewModel @Inject constructor(
     }
 
     private fun fetchDashboard() {
-        fetchDashboardUseCase.fetchDashboard()
+        fetchDashboardUseCase.fetchGlobalStats()
             .onEach { resource ->
                 when (resource) {
                     is Resource.Success -> updatePageForResult(resource.data)

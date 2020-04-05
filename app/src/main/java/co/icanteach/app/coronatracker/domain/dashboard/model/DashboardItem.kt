@@ -1,24 +1,8 @@
 package co.icanteach.app.coronatracker.domain.dashboard.model
 
-sealed class DashboardItem {
-    class Motherland(
-        val dailyInfoImage: String,
-        val totalInfoImage: String
-    ) : DashboardItem()
+import androidx.annotation.StringRes
 
-    class EarthTotal(
-        val totalDeaths: String,
-        val totalCases: String,
-        val totalRecovered: String
-    ) : DashboardItem()
-
-    class CountrySpecial(
-        val countryName: String,
-        val totalCases: String,
-        val newCases: String,
-        val totalDeaths: String,
-        val newDeaths: String,
-        val totalRecovered: String,
-        val activeCases: String
-    ) : DashboardItem()
-}
+class DashboardItem(
+    val caseTotal: String,
+    @StringRes val caseDisplayName: Int
+)

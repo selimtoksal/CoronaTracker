@@ -26,7 +26,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "CONSUMER_KEY", apikeyProperties['CONSUMER_KEY'])
-        buildConfigField("String", "BASE_URL", "\"https://api.collectapi.com/corona/\"")
+        buildConfigField("String", "BASE_URL", "\"https://api.thevirustracker.com/\"")
     }
 
     buildTypes {

@@ -4,4 +4,15 @@
     <!-- Strings used for fragments for navigation -->
     <string name="news_tab">News</string>
     <string name="dashboard_tab">Dashboard</string>
+
+    <string name="total_cases">Total Cases</string>
+    <string name="total_recovered">Total Recovered</string>
+    <string name="total_unresolved">Total Unresolved</string>
+    <string name="total_deaths">Total Deaths</string>
+    <string name="total_new_cases_today">Total New Cases Today</string>
+    <string name="total_new_deaths_today">Total New Deaths Today</string>
+    <string name="total_active_cases">Total Active Cases</string>
+    <string name="total_serious_cases">Total Serious Cases</string>
+    <string name="total_affected_countries">Total Affected Countries</string>
+
 </resources>
